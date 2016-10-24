@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello, Canvas!</title>
+    <script type="text/javascript">
+        function ready(){
+            var canvas=document.querySelector('canvas');
+            canvas.width=400;
+            canvas.height=300;
+            canvas.style.border="1px solid black";
+
+            var context=canvas.getContext('2d');
+            context.font="20px Arial";
+
+//            context.textBaseline="top";
+//            context.shadowBlur=5;
+//            context.shadowColor="grey";
+//            context.shadowOffsetX=5;
+//            context.shadowOffsetY=5;
+
+            context.fillText('Hello World',100,100);
+        }
+        window.onload=ready;
+    </script>
+    <style type="text/css">
+        canvas{border:1px solid black}
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+</body>
+</html>

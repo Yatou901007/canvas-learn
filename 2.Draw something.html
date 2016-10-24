@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello, Canvas!</title>
+    <script type="text/javascript">
+        function ready(){
+            var canvas=document.querySelector('canvas');
+            canvas.width=800;
+            canvas.height=600;
+            canvas.style.border="1px solid black";
+
+            var context=canvas.getContext('2d');
+            context.fillRect(100,100,100,100);
+            context.rect(200,200,100,100);
+            context.fill();
+            context.beginPath();
+            context.arc(100,100,100,0,Math.PI*2);
+            context.fillStyle="rgba(255,0,0,0.5)";
+            context.fill();
+            context.beginPath();
+            context.moveTo(200,50);
+            context.lineTo(300,50);
+            context.lineWidth=15;
+            context.lineCap="round";
+            context.stroke();
+            context.strokeStyle="blue";
+            context.lineJoin="round";
+            context.beginPath();
+            context.moveTo(200,200);
+            context.lineTo(300,100);
+            context.lineTo(300,150);
+            context.closePath();
+            context.stroke();
+
+            var x1=500,y1=500,x2=600,y2=300;
+            var linear=context.createLinearGradient(x1,y1,x2,y2);
+            linear.addColorStop(0,"red");
+            linear.addColorStop(0.5,"purple");
+            linear.addColorStop(1,"yellow");
+            context.beginPath();
+            context.moveTo(x1,y1);
+            context.lineTo(x2,y2);
+            context.lineWidth=50;
+            context.strokeStyle=linear;
+            context.stroke();
+
+            var r=50;
+            var grad=context.createRadialGradient(x1-20,y2-20,0,x1,y2,r);
+            grad.addColorStop(0,"white");
+            grad.addColorStop(1,"black");
+            context.beginPath();
+            context.arc(x1,y2,r,0,Math.PI*2);
+            context.fillStyle=grad;
+            context.fill();
+
+            context.globalCompositeOperation="xor";
+            context.fillStyle="red";
+            context.fillRect(400,50,100,100);
+            context.fillStyle="green";
+            context.fillRect(425,75,100,100);
+        }
+        window.onload=ready;
+    </script>
+    <style type="text/css">
+        canvas{border:1px solid black}
+    </style>
+</head>
+<body>
+<canvas></canvas>
+</body>
+</html>

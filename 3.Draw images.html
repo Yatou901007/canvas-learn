@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello, Canvas!</title>
+    <script type="text/javascript">
+        function ready(){
+            var canvas=document.querySelector('canvas');
+            canvas.width=400;
+            canvas.height=300;
+            canvas.style.border="1px solid black";
+
+            var context=canvas.getContext('2d');
+
+            var img=new Image();
+            img.src="imgs/girl.jpg";
+            img.onload=function(){
+                canvas.width=img.width;
+                canvas.height=img.height;
+                context.globalAlpha=0.5;
+                context.drawImage(img,0,0);
+                context.shadowBlur=20;
+                context.shadowOffsetX=20;
+                context.shadowOffsetY=20;
+                context.shadowColor="white";
+                context.globalAlpha=0.75;
+                context.drawImage(img,-100,100);
+                context.globalAlpha=1;
+                context.drawImage(img,-200,200);
+
+                context.drawImage(img,0,0,img.width,img.height,img.width/4*3,img.height/4*3,img.width/4,img.height/4);
+                context.font="56px Arial black";
+                context.fillStyle="black";
+                context.lineWidth=20;
+                context.strokeStyle="white";
+                context.strokeText('Spring, 2013',300,200);
+                context.fillText('Spring, 2013',300,200);
+                context.globalCompositeOperation="lighter";
+                context.shadowBlur=0;
+                context.shadowColor=undefined;
+                context.shadowOffsetX=0;
+                context.shadowOffsetY=0;
+                for(var i=0;i<150;i++){
+                    context.beginPath();
+                    var x=Math.random()*img.width;
+                    var y=Math.random()*img.height;
+                    var r=10+Math.random()*20;
+                    var grad=context.createRadialGradient(x,y,0,x,y,r);
+                    grad.addColorStop(0,"rgba(255,255,255,"+Math.random()+")");
+                    grad.addColorStop(1,"rgba(255,255,255,0)");
+                    context.fillStyle=grad;
+                    context.arc(x,y,r,0,Math.PI*2);
+                    context.fill();
+                }
+
+            }
+        }
+        window.onload=ready;
+    </script>
+    <style type="text/css">
+        canvas{border:1px solid black}
+    </style>
+</head>
+<body>
+<canvas></canvas>
+</body>
+</html>
